@@ -18,12 +18,16 @@ import cs40s.collections.LinkedList;
 public class Meme implements Serializable
 {
     
-    public static int IS_FROM_FILE = 0;         // Meme is from a file
-    public static int IS_FROM_NET = 1;          // Meme is from the internet
-           
-    public String path;                         // Path to the meme
-    public int type;                            // Which type of meme
-    public LinkedList<String> keywords;         // Dynamic list of keywords
+    /** This Meme is from a file */
+    public static int IS_FROM_FILE = 0;
+    /** This Meme is from the internet */
+    public static int IS_FROM_NET = 1;           
+    /** Path to the meme */
+    public String path;
+    /** Which type of meme */
+    public int type;
+    /** Dynamic list of keywords */
+    public LinkedList<String> keywords;
 
     
     /**
