@@ -34,6 +34,12 @@ public class CS40STutorial
      */
     public CS40STutorial() {
         new UIView();                   // Create a view for the user interface
+        
+        /**********************************************************************
+         * NOTE... This Java file has been completed, next open the "UIView"
+         * Java file and follow it's instructions. Once open, select "Source"
+         * under the code tab to switch to he code.
+         *********************************************************************/
     }
 
 }
