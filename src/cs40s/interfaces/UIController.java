@@ -1,6 +1,6 @@
 
 /** Required package class namespace */
-package cs40s;
+package cs40s.interfaces;
 
 /** Required imports */
 import java.awt.List;
@@ -220,9 +220,9 @@ public class UIController
         file = dialog.openFile(userInterface);  // Dialog and file to open list
         if (file != null) {                     // Valid file chosen
             allMemes = (LinkedList<Meme>)fileHandler.openObject(file);  // Get
-            if (allMemes != null) {                 // Valid list
-                memesList.removeAll();          // Clear out listbox
-                for (int i = 0; i < allMemes.size(); i++) {     // Traverse list
+            if (allMemes != null) {                         // Valid list
+                memesList.removeAll();                      // Clear out listbox
+                for (int i = 0; i < allMemes.size(); i++) { // Traverse list
                     meme = allMemes.get(i);                 // Get meme
                     String text = meme.toString();          // Convert to text
                     memesList.add(text);                    // Add to listbox
@@ -236,49 +236,51 @@ public class UIController
      */
     public void saveMemeList() {
         file = dialog.saveFile(userInterface);  // Dialog and save list to file
-        if (file != null && allMemes != null) 
+        if (file != null && allMemes != null) {     // Check all is valid
             fileHandler.saveObject(allMemes, file); // Save all memes to file
+        }
     }
 
     /**
-     * 
+     * User has clicked on a meme in the list box, display this meme and its
+     * image
      */
     public void clickOnMemeList() {
-        int index = memesList.getSelectedIndex();
-        meme = allMemes.get(index);
-        if (meme != null) {
-            keywordsList.removeAll();
-            keywords = meme.keywords;
-            for (int i = 0; i < keywords.size(); i++) {
-                String word = keywords.get(i);
-                keywordsList.add(word);
+        int index = memesList.getSelectedIndex();       // Get the user index
+        meme = allMemes.get(index);                     // Get meme from list 
+        if (meme != null) {                             // Meme is valid
+            keywordsList.removeAll();                   // Clear keyword list
+            keywords = meme.keywords;                   // Get list from meme
+            for (int i = 0; i < keywords.size(); i++) { // Traverse keywords
+                String word = keywords.get(i);          // Get a word
+                keywordsList.add(word);                 // Add to list box
             }
-            showImage();
+            showImage();                                // Show meme image
         }
     }
     
     /**
-     * 
+     * Utility method shows the image from the meme in the label
      */
     private void showImage() {
-        if (meme == null) return;
-        try {
-            Icon icon = null;
-            if (meme.type == Meme.IS_FROM_FILE) {
-                icon = new ImageIcon(meme.path);      // Create icon to display
+        if (meme == null) return;                   // Check meme is valid
+        try {                                       // Error trap
+            Icon icon = null;                       // Reset icon
+            if (meme.type == Meme.IS_FROM_FILE) {   // File image
+                icon = new ImageIcon(meme.path);    // Create icon to display
             }
-            else if (meme.type == Meme.IS_FROM_NET) {   
-                URL           url   = new URL(meme.path);
-                BufferedImage image = ImageIO.read(url);
+            else if (meme.type == Meme.IS_FROM_NET) {   // URL image   
+                URL url = new URL(meme.path);           // Get path from meme
+                BufferedImage image = ImageIO.read(url);    // Create image
                 icon = new ImageIcon(image);      // Create icon to display
             }
             memeImageLabel.setIcon(icon);           // Assign icon to label
             Images.resizeToContainer(memeImageLabel);   // Resize to label
         } 
-        catch(MalformedURLException error) {
+        catch(MalformedURLException error) {        // Error trap for URL
             dialog.output("Sorry cannot load that image!");
         }
-        catch (IOException error) {
+        catch (IOException error) {                 // Error trap for file
             dialog.output("Sorry cannot load that image!");
         }
     }

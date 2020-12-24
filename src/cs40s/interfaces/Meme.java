@@ -1,6 +1,6 @@
 
 /** Required package class namespace */
-package cs40s;
+package cs40s.interfaces;
 
 /** Required imports */
 import java.io.Serializable;

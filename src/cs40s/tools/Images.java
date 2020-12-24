@@ -24,15 +24,15 @@ public class Images
      * @param label the JLabel object to resize to
      */
     public static void resizeToContainer(JLabel label) {
-        int       width         = label.getWidth();     // get label width
-        int       height        = label.getHeight();    // get label height
-        ImageIcon originalIcon  = (ImageIcon)label.getIcon();   // get icon
-        if (originalIcon == null) return;               // error trap
-        Image     originalImage = originalIcon.getImage();      // get image
+        int       width         = label.getWidth();     // Get label width
+        int       height        = label.getHeight();    // Get label height
+        ImageIcon originalIcon  = (ImageIcon)label.getIcon();   // Get icon
+        if (originalIcon == null) return;               // Error trap
+        Image     originalImage = originalIcon.getImage();      // Get image
         Image     newImage      = originalImage.getScaledInstance(
                                           width,height,Image.SCALE_SMOOTH);
-        Icon icon               = new ImageIcon(newImage);  // set new image
-        label.setIcon(icon);                            // set icon to label
+        Icon icon               = new ImageIcon(newImage);  // Set new image
+        label.setIcon(icon);                            // Set icon to label
     }
     
 }

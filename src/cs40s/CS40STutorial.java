@@ -2,6 +2,9 @@
 /** Required package class namespace */
 package cs40s;
 
+/** Required imports */
+import cs40s.interfaces.UIView;
+
 
 /**
  * CS40STutorial.java - Please follow the code in this document and the 

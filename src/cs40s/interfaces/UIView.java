@@ -1,6 +1,6 @@
 
 /** Required package class namespace */
-package cs40s;
+package cs40s.interfaces;
 
 /**
  * UIView.java - the main user interface "view" for the user to interact with
