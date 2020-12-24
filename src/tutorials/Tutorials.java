@@ -7,10 +7,10 @@ import cs40s.CS40STutorial;
 
 
 /**
- * Tutorials.java - 
+ * Tutorials.java - Various class tutorials for students to work on
  *
  * @author Mr. Wachs 
- * @since 24-Dec-2020 
+ * @since December, 2020
  */ 
 public class Tutorials 
 {

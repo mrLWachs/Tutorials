@@ -37,23 +37,23 @@ import cs40s.tools.Images;
 public class UIController 
 {
 
-    // properties linked from the view 
-    private JLabel     memeImageLabel;      // label for pictures
-    private JTextField keywordTextbox;      // textbox to enter a keyword
-    private List       keywordsList;        // listbox for all entered keywords
-    private List       memesList;           // listbox for all entered memes
-    private UIView     userInterface;       // the frame user interface
+    // Properties linked from the view 
+    private JLabel     memeImageLabel;      // Label for pictures
+    private JTextField keywordTextbox;      // Textbox to enter a keyword
+    private List       keywordsList;        // Listbox for all entered keywords
+    private List       memesList;           // Listbox for all entered memes
+    private UIView     userInterface;       // The frame user interface
     
-    // properties for use when one meme is created
-    private File               file     = null;     // stores the a file object
-    private String             keyword  = null;     // stores a keyword
-    private Meme               meme     = null;     // a meme object
-    private LinkedList<String> keywords = null;     // stores all keywords
+    // Properties for use when one meme is created
+    private File               file     = null;     // Stores the a file object
+    private String             keyword  = null;     // Stores a keyword
+    private Meme               meme     = null;     // A meme object
+    private LinkedList<String> keywords = null;     // Stores all keywords
     
-    // property to store all memes in a dynamic list
+    // Property to store all memes in a dynamic list
     private LinkedList<Meme> allMemes = new LinkedList<>();
     
-    // properties for functions like searching, sorting, dialogs, files, etc.
+    // Properties for functions like searching, sorting, dialogs, files, etc.
     private Dialogs dialog = new Dialogs("Meme database",userInterface);
     private FileHandler<LinkedList<Meme>> fileHandler = new FileHandler<>(dialog);
     
@@ -72,18 +72,18 @@ public class UIController
             List       keywordsList, 
             List       memesList, 
             UIView     userInterface) {
-        // connect (link) all parameters to global properties
+        // Connect (link) all parameters to global properties
         this.memeImageLabel     = memeImageLabel;
         this.keywordTextbox     = keywordTextbox;
         this.keywordsList       = keywordsList;
         this.memesList          = memesList; 
         this.userInterface      = userInterface;
-        // set some values for the user interface and display        
-        userInterface.setSize(835,745);                 // set size
-        userInterface.setTitle("Meme Database");        // set title
-        userInterface.setResizable(false);              // no resizing
-        userInterface.setLocationRelativeTo(null);      // center on screen
-        userInterface.setVisible(true);                 // display frame
+        // Set some values for the user interface and display        
+        userInterface.setSize(835,745);                 // Set size
+        userInterface.setTitle("Meme Database");        // Set title
+        userInterface.setResizable(false);              // No resizing
+        userInterface.setLocationRelativeTo(null);      // Center on screen
+        userInterface.setVisible(true);                 // Display frame
     }
     
     /**
@@ -93,48 +93,48 @@ public class UIController
         file = dialog.openFile(userInterface);      // Get file from open dialog 
         if (file != null) {
             String path = file.getAbsolutePath();   // Get path to the file
-            meme = new Meme(path, Meme.IS_FROM_FILE);
-            showImage();
+            meme = new Meme(path, Meme.IS_FROM_FILE);   // Create Meme object
+            showImage();                                // Show the meme image
         }
     }
 
     /**
-     * 
+     * User has clicked a button and wants to select a meme image from internet
      */
     public void selectMemeImageFromInternet() {
         String path = dialog.input("Copy and Paste the internet path "
-                    + "to the image in the box below...");
-        meme = new Meme(path, Meme.IS_FROM_NET);
-        showImage();
+                    + "to the image in the box below...");  // Get URL from user
+        meme = new Meme(path, Meme.IS_FROM_NET);            // Create Meme
+        showImage();                                    // Show the meme image
     }
 
     /**
      * User has clicked a button to enter a keyword into the list of keywords
      */
     public void enterMemeKeyword() {
-        keyword = keywordTextbox.getText();             // get text from textbox
-        if (keyword != null && !keyword.equals("")) {       // valid text
-            if (keywords == null || keywords.isEmpty()) {   // list is empty
-                keywords = new LinkedList<>();              // create list
+        keyword = keywordTextbox.getText();             // Get text from textbox
+        if (keyword != null && !keyword.equals("")) {       // Valid text
+            if (keywords == null || keywords.isEmpty()) {   // List is empty
+                keywords = new LinkedList<>();              // Create list
             }
-            keywords.add(keyword);                      // add to list
-            keywordsList.add(keyword);                  // add to listbox
-            keywordTextbox.setText("");                 // set textbox empty
-            keywordTextbox.requestFocus();              // set focus to textbox
-            keyword = null;                             // set property to null
+            keywords.add(keyword);                      // Add to list
+            keywordsList.add(keyword);                  // Add to listbox
+            keywordTextbox.setText("");                 // Set textbox empty
+            keywordTextbox.requestFocus();              // Set focus to textbox
+            keyword = null;                             // Set property to null
         }
     }
 
     /**
-     * User has clicked a button to delete the keyword selected in the listbox
+     * User has clicked a button to delete the keyword selected in the list box
      */
     public void deleteSelectedKeyword() {
-        int index = keywordsList.getSelectedIndex();    // index selected
-        if (index != -1) {                              // valid index
+        int index = keywordsList.getSelectedIndex();    // Index selected
+        if (index != -1) {                              // Valid index
             if (dialog.yesNo("Are you sure you want to "
-                           + "delete the selected keyword?")) { // confirm
-                keywordsList.remove(index);             // remove from listbox
-                if (keywords != null) keywords.remove(index);   // and from list
+                           + "delete the selected keyword?")) { // Confirm
+                keywordsList.remove(index);             // Remove from listbox
+                if (keywords != null) keywords.remove(index);   // And from list
             }
         }
     }
@@ -144,12 +144,12 @@ public class UIController
      * meme (to start over)
      */
     public void clearFields() {
-        memeImageLabel.setIcon(null);       // remove any image from label
+        memeImageLabel.setIcon(null);       // Remove any image from label
         keywordTextbox.setText("");
-        keywordsList.removeAll();           // clear out the listbox
+        keywordsList.removeAll();           // Clear out the listbox
         file = null;
         meme = null;
-        if (keywords != null) {             // clear and set list to null
+        if (keywords != null) {             // Clear and set list to null
             keywords.clear();
             keywords = null;
         }
@@ -164,26 +164,26 @@ public class UIController
             System.out.println("saving meme... keywords: " + keywords.toString());
             
             meme.add(keywords);
-            allMemes.add(meme);                         // add meme to list
-            memesList.add(meme.toString());         // add meme to listbox
-            clearFields();                          // clear all fields
+            allMemes.add(meme);                         // Add meme to list
+            memesList.add(meme.toString());         // Add meme to listbox
+            clearFields();                          // Clear all fields
         }
         else {
-            dialog.output("Please select an image file!");  // dialog to user
-            memeImageLabel.requestFocus();          // set focus to textbox
+            dialog.output("Please select an image file!");  // Dialog to user
+            memeImageLabel.requestFocus();          // Set focus to textbox
         }
     }
 
     /**
-     * User has clicked a button to delete the meme selected in the listbox
+     * User has clicked a button to delete the meme selected in the list box
      */
     public void deleteSelectedMeme() {
-        int index = memesList.getSelectedIndex();       // index selected
-        if (index != -1) {                              // index is valid
+        int index = memesList.getSelectedIndex();       // Index selected
+        if (index != -1) {                              // Index is valid
             if (dialog.yesNo("Are you sure you want to "
-                           + "delete the selected meme?")) {    // confirm
-                memesList.remove(index);                // remove from listbox
-                allMemes.remove(index);                     // remove from list
+                           + "delete the selected meme?")) {    // Confirm
+                memesList.remove(index);                // Remove from listbox
+                allMemes.remove(index);                     // Remove from list
             }
         }
     }
@@ -192,24 +192,24 @@ public class UIController
      * User has clicked a button to search all memes in the list for a keyword
      */
     public void searchMemes() {
-        String searchText = dialog.input("Enter word to search for");   // word
-        searchText = searchText.toLowerCase();      // convert to lowercase
-        int index = -1;                             // assume not found
-        for (int i = 0; i < allMemes.size(); i++) {     // traverse list
-            meme = allMemes.get(i);                     // get a meme from list
-            String words = meme.toString();         // convert meme to string
-            words = words.toLowerCase();            // convert to lowercase
-            if (words.contains(searchText)) {       // see if word is in text
-                index = i;                          // meme location found
-                i = allMemes.size();                    // exit loop
+        String searchText = dialog.input("Enter word to search for");   // Word
+        searchText = searchText.toLowerCase();      // Convert to lowercase
+        int index = -1;                             // Assume not found
+        for (int i = 0; i < allMemes.size(); i++) {     // Traverse list
+            meme = allMemes.get(i);                     // Get a meme from list
+            String words = meme.toString();         // Convert meme to string
+            words = words.toLowerCase();            // Convert to lowercase
+            if (words.contains(searchText)) {       // See if word is in text
+                index = i;                          // Meme location found
+                i = allMemes.size();                    // Exit loop
             }
         }
         if (index != -1) {
-            memesList.select(index);            // select found in listbox
+            memesList.select(index);            // Select found in listbox
             clickOnMemeList();
         }   
         else {
-            dialog.output(searchText + " not found!");      // prompt
+            dialog.output(searchText + " not found!");      // Prompt
         }         
     }
 
@@ -217,15 +217,15 @@ public class UIController
      * User has clicked a button to open a memes list from a permanent file
      */
     public void openMemeList() {
-        file = dialog.openFile(userInterface);  // dialog and file to open list
-        if (file != null) {                     // valid file chosen
-            allMemes = (LinkedList<Meme>)fileHandler.openObject(file);  // get list
-            if (allMemes != null) {                 // valid list
-                memesList.removeAll();          // clear out listbox
-                for (int i = 0; i < allMemes.size(); i++) {     // traverse list
-                    meme = allMemes.get(i);              // get meme
-                    String text = meme.toString();          // convert to text
-                    memesList.add(text);                    // add to listbox
+        file = dialog.openFile(userInterface);  // Dialog and file to open list
+        if (file != null) {                     // Valid file chosen
+            allMemes = (LinkedList<Meme>)fileHandler.openObject(file);  // Get
+            if (allMemes != null) {                 // Valid list
+                memesList.removeAll();          // Clear out listbox
+                for (int i = 0; i < allMemes.size(); i++) {     // Traverse list
+                    meme = allMemes.get(i);                 // Get meme
+                    String text = meme.toString();          // Convert to text
+                    memesList.add(text);                    // Add to listbox
                 }
             }
         }
@@ -235,8 +235,9 @@ public class UIController
      * User has clicked a button to save the memes list to a permanent file
      */
     public void saveMemeList() {
-        file = dialog.saveFile(userInterface);  // dialog and save list to file
-        if (file != null && allMemes != null) fileHandler.saveObject(allMemes, file);
+        file = dialog.saveFile(userInterface);  // Dialog and save list to file
+        if (file != null && allMemes != null) 
+            fileHandler.saveObject(allMemes, file); // Save all memes to file
     }
 
     /**

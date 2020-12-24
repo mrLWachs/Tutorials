@@ -58,11 +58,11 @@ public class Meme implements Serializable
      */
     @Override
     public String toString() {
-        String text = "Meme";                           // create text
+        String text = "Meme";                           // Create text
         if (keywords == null || keywords.isEmpty()) {
             text += " no keywords";
         }
-        else {                                  // continue filling from list
+        else {                                  // Continue filling from list
             text += " keywords = ";
             for (int i = 0; i < keywords.size()-1; i++) {
                 text += keywords.get(i) + ", ";
@@ -71,7 +71,7 @@ public class Meme implements Serializable
         }
         if (type == IS_FROM_FILE) text += " from file: " + path;
         if (type == IS_FROM_NET)  text += " from URL: " + path;
-        return text;                                    // return filled text
+        return text;                                    // Return filled text
     }
 
 }
