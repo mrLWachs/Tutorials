@@ -20,9 +20,11 @@ public class CS40STutorial
 {
 
     /**
-     * Class constructor, set class properties
+     * Main method for the project
+     *
+     * @param args the command line arguments
      */
-    public CS40STutorial() {
+    public static void main(String[] args) {
         new UIView();                   // Create a view for the user interface
     }
 
