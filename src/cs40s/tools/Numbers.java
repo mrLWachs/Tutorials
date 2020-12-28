@@ -1,3 +1,15 @@
+/******************************************************************************
+ * NOTE... This class is already coded and completed and you do NOT need to 
+ * modify it. You ARE responsible for adding the "EXPLANATION" comment below...
+ * 
+ * EXPLANATION: 
+ * 
+ * This class 
+ * 
+ * NOTE... After completing this comment in your project, examining the code,  
+ * and reading all the comments below, move next to the "Meme.java" class... 
+ *****************************************************************************/
+
 
 /** Required package class namespace */
 package cs40s.tools;

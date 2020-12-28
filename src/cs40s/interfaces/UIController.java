@@ -1,3 +1,15 @@
+/******************************************************************************
+ * NOTE... This class is already coded and completed and you do NOT need to 
+ * modify it. You ARE responsible for adding the "EXPLANATION" comment below...
+ * 
+ * EXPLANATION: 
+ * 
+ * This class 
+ * 
+ * NOTE... After completing this comment in your project, examining the code,  
+ * and reading all the comments below, move next to the "Meme.java" class... 
+ *****************************************************************************/
+
 
 /** Required package class namespace */
 package cs40s.interfaces;
@@ -54,8 +66,8 @@ public class UIController
     private LinkedList<Meme> allMemes = new LinkedList<>();
     
     // Properties for functions like searching, sorting, dialogs, files, etc.
-    private Dialogs dialog = new Dialogs("Meme database",userInterface);
-    private FileHandler<LinkedList<Meme>> fileHandler = new FileHandler<>(dialog);
+    private Dialogs dialogs = new Dialogs("Meme database",userInterface);
+    private FileHandler<LinkedList<Meme>> fileHandler = new FileHandler<>(dialogs);
     
     /**
      * Class constructor, set class properties
@@ -66,12 +78,8 @@ public class UIController
      * @param memesList list box for all entered memes
      * @param userInterface the frame user interface
      */
-    public UIController(
-            JLabel     memeImageLabel, 
-            JTextField keywordTextbox, 
-            List       keywordsList, 
-            List       memesList, 
-            UIView     userInterface) {
+    public UIController(JLabel memeImageLabel, JTextField keywordTextbox, 
+            List keywordsList, List memesList, UIView userInterface) {
         // Connect (link) all parameters to global properties
         this.memeImageLabel     = memeImageLabel;
         this.keywordTextbox     = keywordTextbox;
@@ -90,9 +98,9 @@ public class UIController
      * User has clicked a button and wants to select a meme image from a file
      */
     public void selectMemeImageFromFile() {
-        file = dialog.openFile(userInterface);      // Get file from open dialog 
-        if (file != null) {
-            String path = file.getAbsolutePath();   // Get path to the file
+        file = dialogs.openFile(userInterface);     // Get file from open dialog 
+        if (file != null) {                             // File is valid
+            String path = file.getAbsolutePath();       // Get path to the file
             meme = new Meme(path, Meme.IS_FROM_FILE);   // Create Meme object
             showImage();                                // Show the meme image
         }
@@ -102,10 +110,10 @@ public class UIController
      * User has clicked a button and wants to select a meme image from internet
      */
     public void selectMemeImageFromInternet() {
-        String path = dialog.input("Copy and Paste the internet path "
+        String path = dialogs.input("Copy and Paste the internet path "
                     + "to the image in the box below...");  // Get URL from user
         meme = new Meme(path, Meme.IS_FROM_NET);            // Create Meme
-        showImage();                                    // Show the meme image
+        showImage();                                        // Show meme image
     }
 
     /**
@@ -131,7 +139,7 @@ public class UIController
     public void deleteSelectedKeyword() {
         int index = keywordsList.getSelectedIndex();    // Index selected
         if (index != -1) {                              // Valid index
-            if (dialog.yesNo("Are you sure you want to "
+            if (dialogs.yesNo("Are you sure you want to "
                            + "delete the selected keyword?")) { // Confirm
                 keywordsList.remove(index);             // Remove from listbox
                 if (keywords != null) keywords.remove(index);   // And from list
@@ -145,13 +153,13 @@ public class UIController
      */
     public void clearFields() {
         memeImageLabel.setIcon(null);       // Remove any image from label
-        keywordTextbox.setText("");
+        keywordTextbox.setText("");         // Remove text from textbox
         keywordsList.removeAll();           // Clear out the listbox
-        file = null;
-        meme = null;
+        file = null;                        // Set global to null
+        meme = null;                        // Set meme to null
         if (keywords != null) {             // Clear and set list to null
-            keywords.clear();
-            keywords = null;
+            keywords.clear();               // Clear linked list
+            keywords = null;                // Set to null
         }
     }
 
@@ -159,18 +167,15 @@ public class UIController
      * User has clicked a button to save all meme information into the meme list
      */
     public void saveMeme() {
-        if (meme != null) {
-            
-            System.out.println("saving meme... keywords: " + keywords.toString());
-            
-            meme.add(keywords);
+        if (meme != null) {                             // Meme is valid
+            meme.add(keywords);                         // Add words to meme
             allMemes.add(meme);                         // Add meme to list
-            memesList.add(meme.toString());         // Add meme to listbox
-            clearFields();                          // Clear all fields
+            memesList.add(meme.toString());             // Add meme to listbox
+            clearFields();                              // Clear all fields
         }
-        else {
-            dialog.output("Please select an image file!");  // Dialog to user
-            memeImageLabel.requestFocus();          // Set focus to textbox
+        else {                                          // No meme created
+            dialogs.output("Please select an image file!");  // Dialog to user
+            memeImageLabel.requestFocus();              // Set focus to textbox
         }
     }
 
@@ -180,10 +185,10 @@ public class UIController
     public void deleteSelectedMeme() {
         int index = memesList.getSelectedIndex();       // Index selected
         if (index != -1) {                              // Index is valid
-            if (dialog.yesNo("Are you sure you want to "
+            if (dialogs.yesNo("Are you sure you want to "
                            + "delete the selected meme?")) {    // Confirm
                 memesList.remove(index);                // Remove from listbox
-                allMemes.remove(index);                     // Remove from list
+                allMemes.remove(index);                 // Remove from list
             }
         }
     }
@@ -192,24 +197,24 @@ public class UIController
      * User has clicked a button to search all memes in the list for a keyword
      */
     public void searchMemes() {
-        String searchText = dialog.input("Enter word to search for");   // Word
+        String searchText = dialogs.input("Enter word to search for");  // Word
         searchText = searchText.toLowerCase();      // Convert to lowercase
         int index = -1;                             // Assume not found
-        for (int i = 0; i < allMemes.size(); i++) {     // Traverse list
-            meme = allMemes.get(i);                     // Get a meme from list
+        for (int i = 0; i < allMemes.size(); i++) { // Traverse list
+            meme = allMemes.get(i);                 // Get a meme from list
             String words = meme.toString();         // Convert meme to string
             words = words.toLowerCase();            // Convert to lowercase
             if (words.contains(searchText)) {       // See if word is in text
                 index = i;                          // Meme location found
-                i = allMemes.size();                    // Exit loop
+                i = allMemes.size();                // Exit loop
             }
-        }
-        if (index != -1) {
-            memesList.select(index);            // Select found in listbox
-            clickOnMemeList();
+        }               
+        if (index != -1) {                          // Valid index selected
+            memesList.select(index);                // Select found in listbox
+            clickOnMemeList();                      // Click on that meme
         }   
-        else {
-            dialog.output(searchText + " not found!");      // Prompt
+        else {                                      // Not a valid index
+            dialogs.output(searchText + " not found!");      // Prompt user
         }         
     }
 
@@ -217,7 +222,7 @@ public class UIController
      * User has clicked a button to open a memes list from a permanent file
      */
     public void openMemeList() {
-        file = dialog.openFile(userInterface);  // Dialog and file to open list
+        file = dialogs.openFile(userInterface);  // Dialog and file to open list
         if (file != null) {                     // Valid file chosen
             allMemes = (LinkedList<Meme>)fileHandler.openObject(file);  // Get
             if (allMemes != null) {                         // Valid list
@@ -235,7 +240,7 @@ public class UIController
      * User has clicked a button to save the memes list to a permanent file
      */
     public void saveMemeList() {
-        file = dialog.saveFile(userInterface);  // Dialog and save list to file
+        file = dialogs.saveFile(userInterface);  // Dialog and save list to file
         if (file != null && allMemes != null) {     // Check all is valid
             fileHandler.saveObject(allMemes, file); // Save all memes to file
         }
@@ -263,25 +268,25 @@ public class UIController
      * Utility method shows the image from the meme in the label
      */
     private void showImage() {
-        if (meme == null) return;                   // Check meme is valid
-        try {                                       // Error trap
-            Icon icon = null;                       // Reset icon
-            if (meme.type == Meme.IS_FROM_FILE) {   // File image
-                icon = new ImageIcon(meme.path);    // Create icon to display
+        if (meme == null) return;                       // Check meme is valid
+        try {                                           // Error trap
+            Icon icon = null;                           // Reset icon
+            if (meme.type == Meme.IS_FROM_FILE) {       // File image
+                icon = new ImageIcon(meme.path);        // Create icon
             }
             else if (meme.type == Meme.IS_FROM_NET) {   // URL image   
                 URL url = new URL(meme.path);           // Get path from meme
                 BufferedImage image = ImageIO.read(url);    // Create image
-                icon = new ImageIcon(image);      // Create icon to display
+                icon = new ImageIcon(image);            // Create icon 
             }
-            memeImageLabel.setIcon(icon);           // Assign icon to label
+            memeImageLabel.setIcon(icon);               // Assign icon to label
             Images.resizeToContainer(memeImageLabel);   // Resize to label
         } 
-        catch(MalformedURLException error) {        // Error trap for URL
-            dialog.output("Sorry cannot load that image!");
+        catch(MalformedURLException error) {            // Error trap for URL
+            dialogs.output("Sorry cannot load that image!");
         }
-        catch (IOException error) {                 // Error trap for file
-            dialog.output("Sorry cannot load that image!");
+        catch (IOException error) {                     // Error trap for file
+            dialogs.output("Sorry cannot load that image!");
         }
     }
     

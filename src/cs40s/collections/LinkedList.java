@@ -1,3 +1,13 @@
+/******************************************************************************
+ * NOTE... This class is already coded and completed and you do NOT need to 
+ * modify it. You ARE responsible for adding the "EXPLANATION" comment below...
+ * 
+ * EXPLANATION: 
+ * 
+ * This class 
+ * 
+ *****************************************************************************/
+
 
 /** Required package class namespace */
 package cs40s.collections;
