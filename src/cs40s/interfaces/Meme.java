@@ -10,10 +10,13 @@
  * and a list (a dynamic linked list collection) of all the keywords the 
  * user gave for this meme. The class signature line uses "implements 
  * Serializable" which follows the rules of an interface that it imported so 
- * that the mem can eventually be saved to a permanent file.
+ * that the meme can eventually be saved to a permanent file. The class also
+ * uses two static constants which are used outside the class. For methods, 
+ * it has a constructor, an add() method which adds the keywords, and it 
+ * overloads the toString() method of the Object class.
  * 
  * NOTE... After completing this comment in your project, examining the code,  
- * and reading all the comments below, move next to the "Meme.java" class... 
+ * and reading all the comments below, move next to the "Dialogs.java" class... 
  *****************************************************************************/
 
 
