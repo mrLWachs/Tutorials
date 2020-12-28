@@ -1,4 +1,23 @@
 
+/******************************************************************************
+ * NOTE... This class is already coded and completed and you do NOT need to 
+ * modify it. You ARE responsible for adding the "EXPLANATION" comment below...
+ * 
+ * EXPLANATION: 
+ * 
+ * This class is another class to use as an example of a "helper" class that
+ * is a modification of a class in our Help page that was started in the 
+ * CS30S course. The class is a series of methods to work with numbers. Most
+ * of these methods are not used in the tutorial directly (they are used by 
+ * the "Dialogs.java" class) but could be used in the future (or modified 
+ * for use). 
+ * 
+ * NOTE... After completing this comment in your project, examining the code,  
+ * and reading all the comments below, move next to the "FileHandler.java" 
+ * class... 
+ *****************************************************************************/
+
+
 /** Required package class namespace */
 package cs40s.tools;
 
@@ -15,10 +34,8 @@ import cs40s.collections.LinkedList;
 public class Numbers 
 {
 
-    // Encapsulated global class properties below..............................
-    
-    private final char NEGATIVE = '-';
-    private final char DECIMAL  = '.';
+    private final char NEGATIVE = '-';          // The negative number symbol
+    private final char DECIMAL  = '.';          // The decimal number symbol
     
     /**
      * Checks the value to see if it contains numerical characters or a "-" 
@@ -28,22 +45,22 @@ public class Numbers
      * @return is a number (true) or not (false)
      */
     public boolean isDouble(String value) {
-        char[] characters = value.toCharArray();
-        for (int i = 0; i < characters.length; i++) {            
-            if (Character.isDigit(characters[i]) == false) {
-                if (characters[i] != DECIMAL && 
-                    characters[i] != NEGATIVE) {
-                    return false;
+        char[] characters = value.toCharArray(); // Convert string to char array
+        for (int i = 0; i < characters.length; i++) {   // Traverse array            
+            if (!Character.isDigit(characters[i])) {    // Not a digit 
+                if (characters[i] != DECIMAL &&     
+                    characters[i] != NEGATIVE) {        // Check if not special
+                    return false;                       // Not a digit
                 }
             }
         }
-        try {
-            Double.parseDouble(value);
+        try {                                           // Error trap starts
+            Double.parseDouble(value);                  // Convert to double
         } 
-        catch (NumberFormatException error) {
-            return false;
+        catch (NumberFormatException error) {           // Catch error
+            return false;                               // Not a digit
         }
-        return true;
+        return true;                                    // Is a digit
     }
     
     /**
@@ -53,21 +70,21 @@ public class Numbers
      * @return is a number (true) or not (false)
      */
     public boolean isInteger(String value) {
-        char[] characters = value.toCharArray();
-        for (int i = 0; i < characters.length; i++) {            
-            if (Character.isDigit(characters[i]) == false) {
-                if (characters[i] != NEGATIVE) {
-                    return false;
+        char[] characters = value.toCharArray(); // Convert string to char array
+        for (int i = 0; i < characters.length; i++) {   // Traverse array            
+            if (!Character.isDigit(characters[i])) {    // Not a digit
+                if (characters[i] != NEGATIVE) {        // Check if not special
+                    return false;                       // Not a digit
                 }
             }
-        }
-        try {
-            Integer.parseInt(value);
+        }   
+        try {                                           // Error trap starts
+            Integer.parseInt(value);                    // Convert to integer
         } 
-        catch (NumberFormatException error) {
-            return false;
+        catch (NumberFormatException error) {           // Catch error
+            return false;                               // Not a digit
         }
-        return true;
+        return true;                                    // Is a digit
     }
 
     /**
@@ -77,8 +94,8 @@ public class Numbers
      * @return true (if even), false (if odd)
      */
     public boolean isEven(int number) {
-        if (number % 2 == 0) return true;
-        else                 return false;
+        if (number % 2 == 0) return true;       // Is divisible by two, so even
+        else                 return false;      // Is not divisible, so odd
     }
     
     /**
@@ -90,8 +107,8 @@ public class Numbers
      * @return in range (true) or not (false)
      */
     public boolean inRange(int number, int low, int high) {
-        if (number >= low && number <= high) return true;
-        return false;
+        if (number >= low && number <= high) return true;   // Within range
+        return false;                                       // Outside range
     }
     
     /**
@@ -103,8 +120,8 @@ public class Numbers
      * @return in range (true) or not (false)
      */
     public boolean inRange(double number, double low, double high) {
-        if (number >= low && number <= high) return true;
-        return false;
+        if (number >= low && number <= high) return true;   // Within range
+        return false;                                       // Outside range
     }
     
     /**
@@ -115,9 +132,9 @@ public class Numbers
      * @return a rounded off number
      */
     public double round(double number, int places) {
-        String text = String.format("%." + places + "f",number);
-        double rounded = Double.parseDouble(text);
-        return rounded;
+        String text = String.format("%." + places + "f",number); // Into string
+        double rounded = Double.parseDouble(text);               // Into double
+        return rounded;                 
     }
     
     /**
@@ -129,11 +146,11 @@ public class Numbers
      * @return a rounded off array of numbers
      */
     public double[] round(double[] array, int places) {
-        double[] a = new double[array.length];
-        for (int i = 0; i < array.length; i++) {
-            a[i] = round(array[i], places);
+        double[] a = new double[array.length];          // New empty array
+        for (int i = 0; i < array.length; i++) {        // Traverse array
+            a[i] = round(array[i], places);             // Round off and assign
         }
-        return a;
+        return a;                                       // Return new array
     }
     
     /**
@@ -176,7 +193,7 @@ public class Numbers
      * @return random Boolean (true or false)
      */
     public boolean random() {
-        return random(0, 1) == 0;
+        return random(0, 1) == 0;       // Random number is zero true or false
     }
     
     /**
@@ -187,7 +204,7 @@ public class Numbers
      * @return random number in the range
      */
     public int random(int low, int high) {
-        return (int)(random((double)low, (double)high));
+        return (int)(random((double)low, (double)high));    // Ints to double
     }
     
     /**
@@ -198,7 +215,7 @@ public class Numbers
      * @return random number in the range
      */
     public double random(double low, double high) {
-        return ((high - low + 1d) * Math.random() + low);
+        return ((high - low + 1d) * Math.random() + low);   // Random formula
     }
       
     /**
@@ -208,11 +225,11 @@ public class Numbers
      * @return an array of random integers
      */
     public boolean[] random(int size) {
-        boolean[] numbers = new boolean[size]; // create empty array
-        for (int i = 0; i < size; i++) {       // traverse array size
-            numbers[i] = random();  // assign random value to each index
+        boolean[] numbers = new boolean[size];  // Create empty array
+        for (int i = 0; i < size; i++) {        // Traverse array size
+            numbers[i] = random();          // Assign random value to each index
         }
-        return numbers;                     // return completed array
+        return numbers;                         // Return completed array
     }
     
     /**
@@ -224,11 +241,11 @@ public class Numbers
      * @return an array of random integers
      */
     public int[] random(int low, int high, int size) {
-        int[] numbers = new int[size];      // create empty array of passed size
-        for (int i = 0; i < size; i++) {    // traverse array size
-            numbers[i] = random(low,high);  // assign random value to each index
+        int[] numbers = new int[size];      // Create empty array of passed size
+        for (int i = 0; i < size; i++) {    // Traverse array size
+            numbers[i] = random(low,high);  // Assign random value to each index
         }
-        return numbers;                     // return completed array
+        return numbers;                     // Return completed array
     }
     
     /**
@@ -240,11 +257,11 @@ public class Numbers
      * @return an array of random doubles
      */
     public double[] random(double low, double high, int size) {
-        double[] numbers = new double[size]; // create empty array 
-        for (int i = 0; i < size; i++) {    // traverse array size
-            numbers[i] = random(low,high);  // assign random value to each index
+        double[] numbers = new double[size];    // Create empty array 
+        for (int i = 0; i < size; i++) {        // Traverse array size
+            numbers[i] = random(low,high);  // Assign random value to each index
         }
-        return numbers;                     // return completed array
+        return numbers;                         // Return completed array
     }
    
     /**
@@ -257,11 +274,11 @@ public class Numbers
      * @return a matrix of random integers
      */
     public int[][] random(int rows, int columns, int low, int high) {
-        int[][] matrix = new int[rows][columns];    // create empty matrix
-        for (int row = 0; row < rows; row++) {      // traverse rows
-            matrix[row] = random(low, high, columns);   // create random row
+        int[][] matrix = new int[rows][columns];        // Create empty matrix
+        for (int row = 0; row < rows; row++) {          // Traverse rows
+            matrix[row] = random(low, high, columns);   // Create random row
         }
-        return matrix;                              // return completed matrix
+        return matrix;                              // Return completed matrix
     }
     
     /**
@@ -274,11 +291,11 @@ public class Numbers
      * @return a matrix of random doubles
      */
     public double[][] random(int rows, int columns, double low, double high) {
-        double[][] matrix = new double[rows][columns];    // create empty matrix
-        for (int row = 0; row < rows; row++) {      // traverse rows
-            matrix[row] = random(low, high, columns);   // create random row
+        double[][] matrix = new double[rows][columns];  // Create empty matrix
+        for (int row = 0; row < rows; row++) {          // Traverse rows
+            matrix[row] = random(low, high, columns);   // Create random row
         }
-        return matrix;                              // return completed matrix
+        return matrix;                              // Return completed matrix
     }
     
     /**
@@ -290,11 +307,11 @@ public class Numbers
      * @return a list of random integers
      */
     public LinkedList<Integer> randomList(int low, int high, int size) {
-        LinkedList<Integer> list = new LinkedList<Integer>();
-        for (int i = 0; i < size; i++) {
-            list.add(random(low, high));
+        LinkedList<Integer> list = new LinkedList<Integer>(); // Create list
+        for (int i = 0; i < size; i++) {                // Traverse size
+            list.add(random(low, high));                // Add random to list
         }
-        return list;
+        return list;                                    // Return completed list
     }
     
     /**
@@ -306,11 +323,11 @@ public class Numbers
      * @return a list of random doubles
      */
     public LinkedList<Double> randomList(double low, double high, int size) {
-        LinkedList<Double> list = new LinkedList<Double>();
-        for (int i = 0; i < size; i++) {
-            list.add(random(low, high));
+        LinkedList<Double> list = new LinkedList<Double>(); // Create list
+        for (int i = 0; i < size; i++) {                // Traverse size
+            list.add(random(low, high));                // Add random to list
         }
-        return list;
+        return list;                                    // Return completed list
     }
     
     /**
@@ -320,11 +337,11 @@ public class Numbers
      * @return a list of random doubles
      */
     public LinkedList<Boolean> randomList(int size) {
-        LinkedList<Boolean> list = new LinkedList<Boolean>();
-        for (int i = 0; i < size; i++) {
-            list.add(random());
+        LinkedList<Boolean> list = new LinkedList<Boolean>();   // Create list
+        for (int i = 0; i < size; i++) {                // Traverse size
+            list.add(random());                         // Add random to list
         }
-        return list;
+        return list;                                    // Return completed list
     }
     
 }

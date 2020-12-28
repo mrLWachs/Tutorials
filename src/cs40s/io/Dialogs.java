@@ -1,11 +1,28 @@
 
+/******************************************************************************
+ * NOTE... This class is already coded and completed and you do NOT need to 
+ * modify it. You ARE responsible for adding the "EXPLANATION" comment below...
+ * 
+ * EXPLANATION: 
+ * 
+ * This class is a version of the same class found on our class "Help" page:
+ * https://mrwachs.wordpress.com/current-classes/computer-science-40s/help-cs40s
+ * Which is used to have available methods for creating dialogs for the user
+ * as versions of JOptionPane dialogs. It includes a lot of customization
+ * features like fonts, colors, etc. The methods can be used for inputs, 
+ * outputs, and things like getting file names from the user.
+ * 
+ * NOTE... After completing this comment in your project, examining the code,  
+ * and reading all the comments below, move next to the "Images.java" class... 
+ *****************************************************************************/
+
+
 /** Required package class namespace */
 package cs40s.io;
 
 /** Required imports */
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.io.File;
 import javax.swing.Icon;
@@ -14,7 +31,6 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import cs40s.tools.Numbers;
 
@@ -41,18 +57,11 @@ public class Dialogs
             javax.swing.JOptionPane.PLAIN_MESSAGE;
     private static final int       DEFAULT_OPTION_TYPE      = 
             javax.swing.JOptionPane.YES_NO_OPTION;
-        
-    private final String    ERROR_1       = "Error, please enter again\n\n";
-    private final String    ERROR_2       = "Error, invalid number\n\n";
-    private final String    ERROR_3       = "Error, number not in range\n\n";    
-    private final int       DIALOG_WIDTH  = 1000;
-    private final int       DIALOG_HEIGHT = 800;        
-    private final Dimension DIALOG_DIMENSION = new 
-        Dimension(DIALOG_WIDTH, DIALOG_HEIGHT);
+    private final String           ERROR                    = 
+            "Error, please enter again\n\n"; 
        
-    private JTextArea   area;
-    private JScrollPane scrollPane;
-    private Numbers     numbers;
+    private JTextArea area;
+    private Numbers   numbers;
 
     /** Font used for displaying in the dialogs */
     public Font font;
@@ -76,8 +85,8 @@ public class Dialogs
      * Default class constructor sets class properties
      */
     public Dialogs() {
-        defaults();
-        init();
+        defaults();                                 // Set all default values
+        init();                                     // Inititalize the class
     }
     
     /**
@@ -86,9 +95,9 @@ public class Dialogs
      * @param title The title used on any dialog in the class
      */
     public Dialogs(String title) {
-        defaults();
-        this.title = title;
-        init();
+        defaults();                             // Set all default values
+        this.title = title;                     // Set the title of all dialogs
+        init();                                 // Inititalize the class
     }
 
     /**
@@ -98,10 +107,10 @@ public class Dialogs
      * @param parent the component to parent the dialogs to
      */
     public Dialogs(String title, Component parent) {
-        defaults();
-        this.title  = title;
-        this.parent = parent;
-        init();
+        defaults();                         // Set all default values
+        this.title  = title;                // Set the title of all dialogs
+        this.parent = parent;               // Set the parent UI of all dialogs
+        init();                             // Inititalize the class
     }
 
     /**
@@ -112,10 +121,10 @@ public class Dialogs
      * @param font font used in dialogs
      */
     public Dialogs(String title, Component parent, Font font) {
-        defaults();
-        this.font  = font;
-        this.title = title;
-        init();
+        defaults();                         // Set all default values
+        this.font  = font;                  // Set the font of all dialogs
+        this.title = title;                 // Set the title of all dialogs
+        init();                             // Inititalize the class
     }
     
     /**
@@ -129,12 +138,12 @@ public class Dialogs
      */
     public Dialogs(String title, Component parent, Font font, Color background, 
                    Color foreground) {
-        defaults();
-        this.font       = font;
-        this.background = background;
-        this.foreground = foreground;
-        this.title      = title;
-        init();
+        defaults();                         // Set all default values
+        this.font       = font;             // Set the font of all dialogs
+        this.background = background;       // Set background color of dialogs
+        this.foreground = foreground;       // Set foreground color of dialogs
+        this.title      = title;            // Set the title of all dialogs
+        init();                             // Inititalize the class
     }
 
     /**
@@ -150,15 +159,15 @@ public class Dialogs
      */
     public Dialogs(String title, Component parent, Font font, Color background,
                    Color foreground, int messageType, Icon icon) {
-        defaults();
-        this.parent      = parent;
-        this.messageType = messageType;
-        this.icon        = icon;
-        this.font        = font;
-        this.background  = background;
-        this.foreground  = foreground;
-        this.title       = title;
-        init();
+        defaults();                         // Set all default values
+        this.parent      = parent;          // Set the parent UI of all dialogs
+        this.messageType = messageType;     // Set type of message of dialogs
+        this.icon        = icon;            // Set icon image of dialogs
+        this.font        = font;            // Set the font of all dialogs
+        this.background  = background;      // Set background color of dialogs
+        this.foreground  = foreground;      // Set foreground color of dialogs
+        this.title       = title;           // Set the title of all dialogs
+        init();                             // Inititalize the class
     }
 
     /**
@@ -167,7 +176,7 @@ public class Dialogs
      * @param imageFilePath the name of the image to display
      */
     public void setImage(String imageFilePath) {
-        this.icon = new ImageIcon(imageFilePath);
+        this.icon = new ImageIcon(imageFilePath);   // Set property to new icon
     }
     
     /**
@@ -176,25 +185,10 @@ public class Dialogs
      * @param text the text to display
      */
     public void output(String text) {
-        area.setText(text);     
+        area.setText(text);                     // Set the area text
         JOptionPane.showMessageDialog(parent, area, title, messageType, icon);
     }
 
-    /**
-     * Outputs the passed text in a dialog
-     *
-     * @param text the text to display
-     * @param width the set width of the dialog
-     * @param height the set height of the dialog
-     */
-    public void output(String text, int width, int height) {
-        area.setText(text);        
-        scrollPane.setViewportView(area);
-        scrollPane.setPreferredSize(new Dimension(width,height));
-        JOptionPane.showMessageDialog(parent, scrollPane, title, messageType, 
-                icon);
-    }
-    
     /**
      * Outputs the passed text in a dialog, and gets typed user input
      *
@@ -202,11 +196,11 @@ public class Dialogs
      * @return the text the user types in
      */
     public String input(String text) {
-        area.setText(text);
+        area.setText(text);                     // Set the area text
         Object object = JOptionPane.showInputDialog(parent, area,
                 title, messageType, icon, null, null);
-        if (object == null) return null;
-        return object.toString();
+        if (object == null) return null;        // Nothing inputted
+        return object.toString();               // Convert to string
     }
     
     /**
@@ -216,36 +210,13 @@ public class Dialogs
      * @return a valid integer
      */
     public int inputInteger(String text) {
-        String value = input(text);
-        while (!numbers.isInteger(value)) {
-            value = input(ERROR_1 + text);
+        String value = input(text);             // Get user text
+        while (!numbers.isInteger(value)) {     // Confirm the text is integer
+            value = input(ERROR + text);        // Error message, input again
         }
-        return Integer.parseInt(value);        
+        return Integer.parseInt(value);         // Convert to integer and return
     }
-    
-    /**
-     * Asks the user for a number (integer) in a input dialog box
-     * 
-     * @param text the text for the dialog box
-     * @param minimum the lowest value in the input range
-     * @param maximum the highest value in the input range
-     * @return a valid integer
-     */
-    public int inputInteger(String text, int minimum, int maximum) {
-        String value = input(text);
-        int number = 0;
-        boolean done = false;
-        while (!done) {
-            if (!numbers.isInteger(value)) value = input(ERROR_2 + text);
-            else {
-                number = Integer.parseInt(value);
-                if (numbers.inRange(number, minimum, maximum)) done = true;
-                else value = input(ERROR_3 + text);
-            }            
-        }
-        return number;        
-    }
-    
+
     /**
      * Asks the user for a number (double) in a input dialog box
      * 
@@ -253,36 +224,13 @@ public class Dialogs
      * @return a valid integer
      */
     public double inputDouble(String text) {
-        String value = input(text);
-        while (!numbers.isDouble(value)) {
-            value = input(ERROR_1 + text);
+        String value = input(text);             // Get user text
+        while (!numbers.isDouble(value)) {      // Confirm the text is double
+            value = input(ERROR + text);        // Error message, input again
         }
-        return Double.parseDouble(value);        
+        return Double.parseDouble(value);       // Convert to double and return    
     }
 
-    /**
-     * Asks the user for a number (integer) in a input dialog box
-     * 
-     * @param text the text for the dialog box
-     * @param minimum the lowest value in the input range
-     * @param maximum the highest value in the input range
-     * @return a valid double
-     */
-    public double inputDouble(String text, int minimum, int maximum) {
-        String value = input(text);
-        double number = 0d;
-        boolean done = false;
-        while (!done) {
-            if (!numbers.isDouble(value)) value = input(ERROR_2 + text);
-            else {
-                number = Double.parseDouble(value);
-                if (numbers.inRange(number, minimum, maximum)) done = true;
-                else value = input(ERROR_3 + text);
-            }            
-        }
-        return number;        
-    }
-    
     /**
      * Ask the user a yes and no question, in a confirm dialog box
      * 
@@ -290,7 +238,7 @@ public class Dialogs
      * @return true (yes), false (no)
      */
     public boolean yesNo(String text) {
-        area.setText(text);
+        area.setText(text);                     // Set the area text
         int response = JOptionPane.showConfirmDialog(parent, area, title,
                 optionType, messageType, icon);
         if (response == JOptionPane.YES_OPTION) return true;
@@ -306,7 +254,7 @@ public class Dialogs
      * @return the text on which button the user clicked on
      */
     public String buttons(String text, String[] choices) {
-        area.setText(text);
+        area.setText(text);                     // Set the area text
         int value = JOptionPane.showOptionDialog(parent, area, title, 
                 optionType, messageType, icon, choices, choices[0]);
         return choices[value];
@@ -320,7 +268,7 @@ public class Dialogs
      * @return the option they choose
      */
     public String choices(String text, String[] options) {
-        area.setText(text);
+        area.setText(text);                     // Set the area text
         Object object = JOptionPane.showInputDialog(parent, area, title, 
                 optionType, icon, options, options[0]);
         if (object == null)  return "";
@@ -344,9 +292,9 @@ public class Dialogs
      * @return the file object selected (or a null)
      */
     public File openFile(JFrame frame) {
-        JFileChooser chooser = new JFileChooser(title);
-        chooser.showOpenDialog(frame);
-        return chooser.getSelectedFile();
+        JFileChooser chooser = new JFileChooser(title);     // File dialog
+        chooser.showOpenDialog(frame);                      // Show user
+        return chooser.getSelectedFile();                   // Get file selected
     }
 
     /**
@@ -356,9 +304,9 @@ public class Dialogs
      * @return the file object selected (or a null)
      */
     public File saveFile(JFrame frame) {
-        JFileChooser chooser = new JFileChooser(title);
-        chooser.showSaveDialog(frame);
-        return chooser.getSelectedFile();
+        JFileChooser chooser = new JFileChooser(title);     // File dialog
+        chooser.showSaveDialog(frame);                      // Show user
+        return chooser.getSelectedFile();                   // Get file selected
     }
 
     /**
@@ -368,9 +316,9 @@ public class Dialogs
      * @return the file object selected (or a null)
      */
     public File openFileFrame(JDialog frame) {
-        JFileChooser chooser = new JFileChooser(title);
-        chooser.showOpenDialog(frame);
-        return chooser.getSelectedFile();
+        JFileChooser chooser = new JFileChooser(title);     // File dialog
+        chooser.showOpenDialog(frame);                      // Show user
+        return chooser.getSelectedFile();                   // Get file selected
     }
 
     /**
@@ -380,9 +328,9 @@ public class Dialogs
      * @return the file object selected (or a null)
      */
     public File saveFileFrame(JDialog frame) {
-        JFileChooser chooser = new JFileChooser(title);
-        chooser.showSaveDialog(frame);
-        return chooser.getSelectedFile();
+        JFileChooser chooser = new JFileChooser(title);     // File dialog
+        chooser.showSaveDialog(frame);                      // Show user
+        return chooser.getSelectedFile();                   // Get file selected
     }
     
     /**
@@ -400,7 +348,6 @@ public class Dialogs
         this.icon        = DEFAULT_ICON;
         this.numbers     = new Numbers();
         this.area        = new JTextArea();
-        this.scrollPane  = new JScrollPane();
     }
 
     /**
@@ -410,9 +357,6 @@ public class Dialogs
         area.setFont(font);
         area.setBackground(background);
         area.setForeground(foreground);  
-        scrollPane.setViewportView(area);
-        scrollPane.setPreferredSize(DIALOG_DIMENSION);
-        scrollPane.setBorder(null);
     }
     
 }

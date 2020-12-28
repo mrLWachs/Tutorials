@@ -1,4 +1,16 @@
 
+/******************************************************************************
+ * NOTE... This class is partially coded but will have errors for the missing
+ * code you will be adding to complete the class (and therefore work towards 
+ * completing the tutorial). You are responsible for all areas with "NOTE..."
+ * added in as a comment (as shown in the tutorial document and video). This 
+ * also includes adding comments to the code as outlined. 
+ * 
+ * NOTE... After completing all needed code, examining the existing code and 
+ * comments, move next to the "LinkedList.java" class... 
+ *****************************************************************************/
+
+
 /** Required package class namespace */
 package cs40s.collections;
 
@@ -7,19 +19,22 @@ import java.io.Serializable;
 
  
 /**
- * Node.java - a representation of a generic node for use with
- * a LinkedList object, and could be "visualized" as:
+ * NOTE... Add the first part of the class comment below...
  * 
+ * Node.java - a representation of a generic node for use with a LinkedList
+ * object. The node is a piece of whatever "data" the list will be storing. It
+ * has a section of memory for that data as well as a "link" (or "connection", 
+ * or "reference", or "pointer") to the next node that will be in the list. 
+ * 
+ * It could be "visualized" as:
  * <pre>
- * 
- *                      NODE
- *                +--------------+
- * previous {---- |              |
- *                |     data     |
- *                |   (generic)  |
- *                |              |----} next
- *                +--------------+
- *
+ *                              NODE
+ *            +-------------+-----------+-------------+
+ * node <-----|   previous  |   data    |    next     |
+ *            | (reference) | (content) | (reference) |
+ *            |   (link)    | (generic) |   (link)    |
+ *            |  (pointer)  |           |  (pointer)  |----> node
+ *            +-------------+-----------+-------------+
  * </pre>
  * 
  * @author Mr. Wachs 
@@ -29,14 +44,24 @@ import java.io.Serializable;
 public class Node <T> implements Serializable
 {
     
-     /** the generic data to store */
+    /**************************************************************************
+     * NOTE... Add the class properties and the comments below:
+     *************************************************************************/
+    
+     /** The generic data for the node to store */
     public T data;    
     /** Self reference (link) to the next node in the "chain" */
     public Node next;
     /** Self reference (pointer) to the previous node in the "list" */
     public Node previous;
     
-        
+    
+    /**************************************************************************
+     * NOTE... Add the first class constructor below (the other overloaded
+     * constructors are already added and their errors will disappear once this
+     * constructor is added.
+     *************************************************************************/
+    
     /**
      * Class constructor sets class properties 
      * 
@@ -83,8 +108,13 @@ public class Node <T> implements Serializable
      */
     @Override
     public String toString() {
-        if (data == null) return null;              // invalid data, output null
-        return data.toString();                     // output data in node
+        
+        /**********************************************************************
+         * NOTE... Add the code inside this overloaded method...
+         *********************************************************************/
+        
+        if (data == null) return null;              // Invalid data, output null
+        return data.toString();                     // Output data in node
     }
     
     /**
@@ -95,22 +125,26 @@ public class Node <T> implements Serializable
      */
     @Override
     public boolean equals(Object object) {
-        if (this.data == null) return false;
-        if (object    == null) return false;    // error checks
-        Node that = (Node)object;               // cast object into node
-        if (that.data == null || this.data == null) return false;
-        return this.data.equals(that.data);     // compare data in nodes
+        
+        /**********************************************************************
+         * NOTE... Add the code inside this overloaded method...
+         *********************************************************************/
+        
+        if (this.data == null) return false;    // Error check the node data
+        if (object    == null) return false;    // Error check the parameter
+        Node that = (Node)object;               // Cast object into node
+        if (that.data == null || this.data == null) return false;   // Invalid
+        return this.data.equals(that.data);     // Compare data in nodes
     }
         
     /**
-     * a Deep clone, creates a duplicate object using new memory
+     * A Deep clone, creates a duplicate object using new memory
      *
      * @return a "clone" of the object using new memory
      */
     @Override
     public Node clone() {
-        return new Node(data,next,previous);
-        // annonymous object
+        return new Node(data,next,previous);        // Annonymous object
     }
     
     /**
@@ -118,9 +152,14 @@ public class Node <T> implements Serializable
      */
     @Override
     public void finalize() {
-        data = null;
-        next = previous = null;
-        System.gc();                // runs the garbage collector in Java
+        
+        /**********************************************************************
+         * NOTE... Add the code inside this overloaded method...
+         *********************************************************************/
+        
+        data = null;                // Set node internal data to null
+        next = previous = null;     // Set both "link" references to null
+        System.gc();                // Runs the garbage collector in Java
     }
 
 }

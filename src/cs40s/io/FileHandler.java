@@ -1,4 +1,21 @@
 
+/******************************************************************************
+ * NOTE... This class is already coded and completed and you do NOT need to 
+ * modify it. You ARE responsible for adding the "EXPLANATION" comment below...
+ * 
+ * EXPLANATION: 
+ * 
+ * This class is an example of a class that would have been developed together
+ * in class if we had time to do the permanent storage unit. It uses a variety 
+ * of methods to work with saving and opening data files for your programs.
+ * It uses a generic so that it can save "anything" to a permanent file. 
+ * 
+ * NOTE... After completing this comment in your project, examining the code,  
+ * and reading all the comments below, move next to the "UIController.java" 
+ * class... 
+ *****************************************************************************/
+
+
 /** Required package class namespace */
 package cs40s.io;
 
@@ -34,14 +51,14 @@ public class FileHandler <T>
      * @param dialog the Dialog object to associate with
      */
     public FileHandler(Dialogs dialog) {
-        this.dialog = dialog;
+        this.dialog = dialog;                   // Assign parameter to property
     }
 
     /**
      * Default constructor for the class sets class properties
      */
     public FileHandler() {
-        this.dialog = new Dialogs("");
+        this.dialog = new Dialogs("");          // Instantiate dialog class
     }
 
     /**
@@ -52,20 +69,20 @@ public class FileHandler <T>
      * @return the operation was successful (true) or not (false)
      */
     public boolean save(String text, String fileName) {
-        try {            
-            FileWriter stream = new FileWriter(fileName);
-            PrintWriter file  = new PrintWriter(stream);
-            file.print(text);
-            file.close();
-            return true;
+        try {                                               // Start try block
+            FileWriter stream = new FileWriter(fileName);   // Connect to name
+            PrintWriter file  = new PrintWriter(stream);    // Connect to writer
+            file.print(text);                               // Write text 
+            file.close();                                   // Close connection
+            return true;                                    // Return successful
         }
-        catch (NullPointerException error) {
-            dialog.output("Null: " + error.toString());
-            return false;
+        catch (NullPointerException error) {                // Null error caught
+            dialog.output("Null: " + error.toString());     // Show user
+            return false;                                   // Return no success
         }
-        catch (IOException error) {
-            dialog.output("File save: " + error.toString());
-            return false;
+        catch (IOException error) {                 // Input/output error caught
+            dialog.output("File save: " + error.toString());    // Show user
+            return false;                                   // Return no success
         }
     }
     
@@ -77,12 +94,12 @@ public class FileHandler <T>
      * @return the operation was successful (true) or not (false)
      */
     public boolean save(String text, File file) {
-        try {
-            return save(text,file.getAbsolutePath());
+        try {                                               // Start try block
+            return save(text,file.getAbsolutePath());   // Call with file path
         }
-        catch (NullPointerException e) {
-            dialog.output("Null: " + e.toString());
-            return false;
+        catch (NullPointerException e) {                    // Null error caught  
+            dialog.output("Null: " + e.toString());         // Show user
+            return false;                                   // Return no success
         }
     }
        
@@ -94,27 +111,27 @@ public class FileHandler <T>
      * @return the operation was successful (true) or not (false)
      */
     public boolean save(String[] array, String fileName) {
-        try {            
-            FileWriter stream = new FileWriter(fileName);
-            PrintWriter file  = new PrintWriter(stream);            
-            for (String string : array) {
-                file.println(string);
+        try {                                               // Start try block            
+            FileWriter stream = new FileWriter(fileName);   // Connect to name
+            PrintWriter file  = new PrintWriter(stream);    // Connect to writer            
+            for (String string : array) {                   // Traverse array
+                file.println(string);                       // Write to file
             }
-            file.close();
-            return true;
+            file.close();                                   // Close connection
+            return true;                                    // Return successful
         }
-        catch (ArrayIndexOutOfBoundsException |
-               ArrayStoreException error) {
-            dialog.output("Array type: " + error.toString());
-            return false;
+        catch (ArrayIndexOutOfBoundsException | 
+               ArrayStoreException error) {                     // Array error
+            dialog.output("Array type: " + error.toString());   // Show user
+            return false;                                   // Return no success
         }
-        catch (NullPointerException error) {
-            dialog.output("Null: " + error.toString());
-            return false;
+        catch (NullPointerException error) {                // Null error caught
+            dialog.output("Null: " + error.toString());     // Show user
+            return false;                                   // Return no success
         }
-        catch (IOException error) {
-            dialog.output("File save: " + error.toString());
-            return false;
+        catch (IOException error) {                 // Input/output error caught
+            dialog.output("File save: " + error.toString());    // Show user
+            return false;                                   // Return no success
         }
     }
     
@@ -126,12 +143,12 @@ public class FileHandler <T>
      * @return the operation was successful (true) or not (false)
      */
     public boolean save(String[] array, File file) {
-        try {
-            return save(array,file.getAbsolutePath());
+        try {                                               // Start try block
+            return save(array,file.getAbsolutePath());  // Call with file path
         }
-        catch (NullPointerException e) {
-            dialog.output("Null: " + e.toString());
-            return false;
+        catch (NullPointerException e) {                    // Null error caught
+            dialog.output("Null: " + e.toString());         // Show user
+            return false;                                   // Return no success
         }
     }
         
@@ -143,22 +160,22 @@ public class FileHandler <T>
      * @return the operation was successful (true) or not (false)
      */
     public boolean save(LinkedList<String> list, String fileName) {
-        try {            
-            FileWriter stream = new FileWriter(fileName);
-            PrintWriter file  = new PrintWriter(stream);              
-            for (int i = 0; i < list.size(); i++) {
-                file.println(list.get(i));
+        try {                                               // Start try block            
+            FileWriter stream = new FileWriter(fileName);   // Connect to name
+            PrintWriter file  = new PrintWriter(stream);    // Connect to writer              
+            for (int i = 0; i < list.size(); i++) {         // Traverse list
+                file.println(list.get(i));                  // Write to file
             }            
-            file.close();
-            return true;
+            file.close();                                   // Close connection
+            return true;                                    // Return successful
         }
-        catch (NullPointerException error) {
-            dialog.output("Null: " + error.toString());
-            return false;
+        catch (NullPointerException error) {                // Null error caught
+            dialog.output("Null: " + error.toString());     // Show user
+            return false;                                   // Return no success
         }
-        catch (IOException error) {
-            dialog.output("File save: " + error.toString());
-            return false;
+        catch (IOException error) {                 // Input/output error caught
+            dialog.output("File save: " + error.toString());    // Show user
+            return false;                                   // Return no success   
         }
     }
     
@@ -170,54 +187,56 @@ public class FileHandler <T>
      * @return the operation was successful (true) or not (false)
      */
     public boolean save(LinkedList<String> list, File file) {
-        try {
-            return save(list,file.getAbsolutePath());
+        try {                                               // Start try block
+            return save(list,file.getAbsolutePath());  // Call with file path
         }
-        catch (NullPointerException e) {
-            dialog.output("Null: " + e.toString());
-            return false;
+        catch (NullPointerException e) {                    // Null error caught
+            dialog.output("Null: " + e.toString());         // Show user
+            return false;                                   // Return no success
         }
     }
         
     /**
-     * Appends the passed text to the passed file name
+     * Appends (meaning it adds the line to the data already in the file) the 
+     * passed text to the passed file name
      * 
      * @param line the line of text to append to the end of the file
      * @param fileName the name of the file to save to
      * @return the operation was successful (true) or not (false)
      */
     public boolean append(String line, String fileName) {
-        try {            
-            FileWriter stream = new FileWriter(fileName,true);
-            PrintWriter file  = new PrintWriter(stream);
-            file.println(line);
-            file.close();
-            return true;
+        try {                                               // Start try block            
+            FileWriter stream = new FileWriter(fileName,true);  // Use append
+            PrintWriter file  = new PrintWriter(stream);       // Connect writer
+            file.println(line);                             // Append line
+            file.close();                                   // Close connection
+            return true;                                    // Return successful
         }
-        catch (NullPointerException error) {
-            dialog.output("Null: " + error.toString());
-            return false;
+        catch (NullPointerException error) {                // Null error caught
+            dialog.output("Null: " + error.toString());     // Show user
+            return false;                                   // Return no success
         }
-        catch (IOException error) {
-            dialog.output("File save: " + error.toString());
-            return false;
+        catch (IOException error) {                 // Input/output error caught
+            dialog.output("File append: " + error.toString());    // Show user
+            return false;                                   // Return no success
         }
     }
     
     /**
-     * Appends the passed text to the passed file 
+     * Appends (meaning it adds the line to the data already in the file) the 
+     * passed text to the passed file 
      * 
      * @param line the line of text to append to the end of the file
      * @param file the File object to save to
      * @return the operation was successful (true) or not (false)
      */
     public boolean append(String line, File file) {
-        try {
-            return append(line,file.getAbsolutePath());
+        try {                                               // Start try block
+            return append(line,file.getAbsolutePath());  // Call with file path
         }
-        catch (NullPointerException e) {
-            dialog.output("Null: " + e.toString());
-            return false;
+        catch (NullPointerException e) {                    // Null error caught
+            dialog.output("Null: " + e.toString());         // Show user
+            return false;                                   // Return no success
         }
     }
         
@@ -228,20 +247,20 @@ public class FileHandler <T>
      * @return a string of the contents of the file (or null)
      */
     public String open(String fileName) {
-        try {            
-            FileReader stream   = new FileReader(fileName);
-            BufferedReader file = new BufferedReader(stream);
-            String line = file.readLine();
-            file.close();
-            return line;
+        try {                                               // Start try block            
+            FileReader stream   = new FileReader(fileName);   // Connect to name
+            BufferedReader file = new BufferedReader(stream); // Connect reader
+            String line = file.readLine();                  // Read in line
+            file.close();                                   // Close connection
+            return line;                                    // Return line
         }
-        catch (NullPointerException error) {
-            dialog.output("Null: " + error.toString());
-            return null;
+        catch (NullPointerException error) {                // Null error caught
+            dialog.output("Null: " + error.toString());     // Show user
+            return null;                                    // Return no text
         }
-        catch (IOException error) {
-            dialog.output("File open: " + error.toString());
-            return null;
+        catch (IOException error) {                 // Input/output error caught
+            dialog.output("File open: " + error.toString());    // Show user
+            return null;                                    // Return no text
         }
     }
 
@@ -252,12 +271,12 @@ public class FileHandler <T>
      * @return a string of the contents of the file (or null)
      */
     public String open(File file) {
-        try {
-            return open(file.getAbsolutePath());
+        try {                                               // Start try block
+            return open(file.getAbsolutePath());        // Call with file path
         }
-        catch (NullPointerException e) {
-            dialog.output("Null: " + e.toString());
-            return null;
+        catch (NullPointerException error) {                // Null error caught
+            dialog.output("Null: " + error.toString());     // Show user
+            return null;                                    // Return no text
         }
     }
     
@@ -268,33 +287,17 @@ public class FileHandler <T>
      * @return a string array of the contents of the file (or null)
      */
     public String[] openArray(String fileName) {
-        try {            
-            FileReader stream   = new FileReader(fileName);
-            BufferedReader file = new BufferedReader(stream);
-            String line = file.readLine();            
-            LinkedList<String> list = new LinkedList<>();            
-            while (line != null) {
-                list.add(line);
-                line = file.readLine();
-            }
-            String[] array = new String[0];
-            array = list.toArray(array);            
-            file.close();
-            return array;
+        try {                                               // Start try block
+            LinkedList<String> list = openList(fileName);   // Get list 
+            if (list == null) return null;                  // Error catch
+            String[] array = new String[0];                 // Create array
+            array = list.toArray(array);                    // Convert list 
+            return array;                                   // Return filled
         }
-        catch (ArrayIndexOutOfBoundsException  |
-               ArrayStoreException error) {
-            dialog.output("Array: " + error.toString());
-            return null;
-        }
-        catch (NullPointerException error) {
-            dialog.output("Null: " + error.toString());
-            return null;
-        }
-        catch (IOException error) {
-            dialog.output("File open: " + error.toString());
-            return null;
-        }
+        catch (NullPointerException error) {               // Null error caught
+            dialog.output("Null: " + error.toString());    // Show user
+            return null;                                   // Return no success
+        }    
     }
 
     /**
@@ -304,12 +307,12 @@ public class FileHandler <T>
      * @return a string array of the contents of the file (or null)
      */
     public String[] openArray(File file) {
-        try {
-            return openArray(file.getAbsolutePath());
+        try {                                               // Start try block
+            return openArray(file.getAbsolutePath());   // Call with file path
         }
-        catch (NullPointerException e) {
-            dialog.output("Null: " + e.toString());
-            return null;
+        catch (NullPointerException error) {                // Null error caught
+            dialog.output("Null: " + error.toString());     // Show user
+            return null;                                    // Return no text
         }
     }
         
@@ -320,25 +323,25 @@ public class FileHandler <T>
      * @return a string LinkedList of the contents of the file (or null)
      */
     public LinkedList<String> openList(String fileName) {
-        try {            
-            FileReader stream   = new FileReader(fileName);
-            BufferedReader file = new BufferedReader(stream);
-            String line = file.readLine();            
-            LinkedList<String> list = new LinkedList<>();            
-            while (line != null) {
-                list.add(line);
-                line = file.readLine();
+        try {                                               // Start try block            
+            FileReader stream   = new FileReader(fileName);   // Connect to name
+            BufferedReader file = new BufferedReader(stream); // Connect reader
+            String line = file.readLine();                  // Read in line            
+            LinkedList<String> list = new LinkedList<>();   // Create list        
+            while (line != null) {                          // Read until end                          
+                list.add(line);                             // Add line to list
+                line = file.readLine();                     // Read next line
             }          
-            file.close();
-            return list;
+            file.close();                                   // Close connection
+            return list;                                    // Return filled
         }
-        catch (NullPointerException error) {
-            dialog.output("Null: " + error.toString());
-            return null;
+        catch (NullPointerException error) {               // Null error caught
+            dialog.output("Null: " + error.toString());    // Show user
+            return null;                                   // Return no success
         }
-        catch (IOException error) {
-            dialog.output("File open: " + error.toString());
-            return null;
+        catch (IOException error) {                 // Input/output error caught
+            dialog.output("File open: " + error.toString());    // Show user
+            return null;                                   // Return no success
         }
     }
 
@@ -349,12 +352,12 @@ public class FileHandler <T>
      * @return a string LinkedList of the contents of the file (or null)
      */
     public LinkedList<String> openList(File file) {
-        try {
-            return openList(file.getAbsolutePath());
+        try {                                               // Start try block
+            return openList(file.getAbsolutePath());   // Call with file path
         }
-        catch (NullPointerException e) {
-            dialog.output("Null: " + e.toString());
-            return null;
+        catch (NullPointerException error) {                // Null error caught
+            dialog.output("Null: " + error.toString());     // Show user
+            return null;                                    // Return no text
         }
     }
     
@@ -366,25 +369,25 @@ public class FileHandler <T>
      * @return a LinkedList of integers (ASCII) contents or null
      */
     public LinkedList<Integer> openASCIICollection(File file) {
-        try {            
-            FileReader stream   = new FileReader(file);
-            BufferedReader reader = new BufferedReader(stream);
-            LinkedList<Integer> tokens = new LinkedList<>();            
-            int token = reader.read();
-            while (token != -1) {
-                tokens.add(token);
-                token = reader.read();
+        try {                                               // Start try block            
+            FileReader     stream = new FileReader(file);     // Connect to file
+            BufferedReader reader = new BufferedReader(stream); // Connect read
+            LinkedList<Integer> tokens = new LinkedList<>();    // Create list        
+            int token = reader.read();              // Read in single character
+            while (token != -1) {                       // Read until end  
+                tokens.add(token);                      // Add to list
+                token = reader.read();                  // Read next character
             }
-            reader.close();
-            return tokens;
+            reader.close();                             // Close connection
+            return tokens;                              // Return filled list
         }
-        catch (NullPointerException error) {
-            dialog.output("Null: " + error.toString());
-            return null;
+        catch (NullPointerException error) {               // Null error caught
+            dialog.output("Null: " + error.toString());    // Show user
+            return null;                                   // Return no success
         }
-        catch (IOException error) {
-            dialog.output("File open: " + error.toString());
-            return null;
+        catch (IOException error) {                 // Input/output error caught
+            dialog.output("File open: " + error.toString());    // Show user
+            return null;                                   // Return no success
         }
     }
     
@@ -396,12 +399,12 @@ public class FileHandler <T>
      * @return a LinkedList of integers (ASCII) contents or null
      */
     public LinkedList<Integer> openASCIICollection(String fileName) {
-        try {
-            return openASCIICollection(new File(fileName));
+        try {                                               // Start try block
+            return openASCIICollection(new File(fileName)); // With file path
         }
-        catch (NullPointerException e) {
-            dialog.output("Null: " + e.toString());
-            return null;
+        catch (NullPointerException error) {                // Null error caught
+            dialog.output("Null: " + error.toString());     // Show user
+            return null;                                    // Return no text
         }
     }
     
@@ -413,15 +416,15 @@ public class FileHandler <T>
      * @return a LinkedList of Character contents or null
      */
     public LinkedList<Character> openCharCollection(File file) {
-        LinkedList<Integer>   list       = openASCIICollection(file);
-        LinkedList<Character> characters = new LinkedList<>();
-        for (int i = 0; i < list.size(); i++) {
-            int       value1 = list.get(i).intValue();
-            char      value2 = (char)value1;
-            Character value3 = new Character(value2);
-            characters.add(value3);
+        LinkedList<Integer>   list       = openASCIICollection(file);   // List
+        LinkedList<Character> characters = new LinkedList<>();      // New list
+        for (int i = 0; i < list.size(); i++) {         // Traverse first list
+            int       value1 = list.get(i).intValue();  // Get int value
+            char      value2 = (char)value1;            // Cast to char
+            Character value3 = new Character(value2);   // Create Character
+            characters.add(value3);                     // Add to second list
         }
-        return characters;
+        return characters;                              // Return filled list
     }
         
     /**
@@ -432,20 +435,20 @@ public class FileHandler <T>
      * @return the operation was successful (true) or not (false)
      */
     public boolean saveObject(T data, String filename) {
-        try {
+        try {                                               // Start try block
             FileOutputStream   stream = new FileOutputStream(filename);
             ObjectOutputStream output = new ObjectOutputStream(stream);
-            output.writeObject(data);
-            output.close();
-            return true;
+            output.writeObject(data);                   // Write object to file
+            output.close();                             // Close file connection
+            return true;                                // Operation successful
         }
-        catch(NullPointerException e) {
-            dialog.output("Null: " + e.toString());
-            return false;
+        catch(NullPointerException error) {             // Null error caught
+            dialog.output("Null: " + error.toString()); // Show user
+            return false;                               // Return unsuccessful
         }
-        catch (IOException error) {
-            dialog.output("File open: " + error.toString());
-            return false;
+        catch (IOException error) {                 // Input/output error caught
+            dialog.output("File save: " + error.toString());    // Show user
+            return false;                               // Return unsuccessful
         }
     }
         
@@ -457,12 +460,12 @@ public class FileHandler <T>
      * @return the operation was successful (true) or not (false)
      */
     public boolean saveObject(T data, File file) {
-        try {
-            return saveObject(data, file.getAbsolutePath());
+        try {                                               // Start try block
+            return saveObject(data, file.getAbsolutePath());  // Call with path
         }
-        catch(NullPointerException e) {
-            dialog.output("Null: " + e.toString());
-            return false;
+        catch(NullPointerException error) {                 // Null error caught
+            dialog.output("Null: " + error.toString());     // Show user
+            return false;                                   // Return no success
         }
     }
     
@@ -473,28 +476,28 @@ public class FileHandler <T>
      * @return the generic data type in the file
      */
     public T openObject(String filename) {
-        try {
+        try {                                               // Start try block
             FileInputStream   stream = new FileInputStream(filename);
             ObjectInputStream input  = new ObjectInputStream(stream);
-            T object = (T)input.readObject();
-            input.close();
-            return object;            
+            T object = (T)input.readObject();       // Read object and cast
+            input.close();                          // Close file connection
+            return object;                          // Return object read
         }
-        catch (ClassCastException e) {
-            dialog.output("Class casting: " + e.toString());
-            return null;
+        catch (ClassCastException error) {        // Casting class error caught
+            dialog.output("Class casting: " + error.toString());   // Show user
+            return null;                                // Return unsuccessful
         }
-        catch (ClassNotFoundException e) {
-            dialog.output("Class not found: " + e.toString());
-            return null;
+        catch (ClassNotFoundException error) {    // No class type error caught
+            dialog.output("Class not found: " + error.toString());  // Show user
+            return null;                                // Return unsuccessful
         }
-        catch(NullPointerException e) {
-            dialog.output("Null: " + e.toString());
-            return null;
+        catch(NullPointerException error) {             // Null error caught 
+            dialog.output("Null: " + error.toString()); // Show user
+            return null;                                // Return unsuccessful
         }
-        catch (IOException error) {
-            dialog.output("File open: " + error.toString());
-            return null;
+        catch (IOException error) {                 // Input/output error caught
+            dialog.output("File open: " + error.toString());    // Show user
+            return null;                                // Return unsuccessful
         }
     }
     
@@ -505,12 +508,12 @@ public class FileHandler <T>
      * @return the generic data type in the file
      */
     public T openObject(File file) {
-        try {
-            return openObject(file.getAbsolutePath());
+        try {                                               // Start try block
+            return openObject(file.getAbsolutePath());      // Call with path
         }
-        catch(NullPointerException e) {
-            dialog.output("Null: " + e.toString());
-            return null;
+        catch(NullPointerException error) {                 // Null error caught
+            dialog.output("Null: " + error.toString());     // Show user
+            return null;                                    // Return no success
         }
     }    
     

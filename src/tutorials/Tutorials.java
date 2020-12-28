@@ -21,7 +21,7 @@ public class Tutorials
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new CS40STutorial();
+        new CS40STutorial().main(args);
     }
 
 }
