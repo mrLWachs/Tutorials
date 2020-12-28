@@ -1,11 +1,13 @@
 /******************************************************************************
- * NOTE... This class is already coded and completed and you do NOT need to 
- * modify it. You ARE responsible for adding the "EXPLANATION" comment below...
+ * NOTE... This class is partially coded but will have errors for the missing
+ * code you will be adding to complete the class (and therefore work towards 
+ * completing the tutorial). You are responsible for all areas with "NOTE..."
+ * added in as a comment (as shown in the tutorial document and video). This 
+ * also includes adding comments to the code as outlined. 
  * 
- * EXPLANATION: 
- * 
- * This class 
- * 
+ * NOTE... After completing all needed code, examining the existing code and 
+ * comments, this will complete the tutorial. Run the program, debug if 
+ * necessary, and prepare for hand in
  *****************************************************************************/
 
 
@@ -18,19 +20,22 @@ import java.lang.reflect.Array;
 
 
 /**
+ * NOTE... Add the first part of the class comment below...
+ * 
  * LinkedList.java - an implementation of a linked list abstract (advanced)
  * data (dynamic) type (ADT) and useful methods, and could be "visualized" as:
  * 
+ * It could be "visualized" as:
  * <pre>
+ *                           LINKED LIST:
  *             +------+       +------+       +------+       +------+      
- *  null {---- |      | {---- |      | {---- |      | {---- |      |  
+ *  null <---- |      | <---- |      | <---- |      | <---- |      |  
  *             | NODE |       | NODE |       | NODE |       | NODE |       
- *             |      |----}  |      |----}  |      |----}  |      |----} null  
+ *             |      |---->  |      |---->  |      |---->  |      |----> null  
  *             +------+       +------+       +------+       +------+      
  *                 ^                                           ^
  *                 |                                           |
  *                head                                        tail
- *
  * </pre>
  * 
  * @author Mr. Wachs 
