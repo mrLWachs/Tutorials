@@ -16,9 +16,11 @@ public class CS30STutorial
 {
 
     /**
-     * Class constructor, set class properties
+     * Main method for the project
+     *
+     * @param args the command line arguments
      */
-    public CS30STutorial() {
+    public static void main(String[] args) {
         
         /**********************************************************************
          * NOTE... The code below will generate an error at first. What it will

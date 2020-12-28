@@ -3,6 +3,7 @@
 package tutorials;
 
 /** Required imports */
+import cs30s.CS30STutorial;
 import cs40s.CS40STutorial;
 
 
@@ -21,6 +22,7 @@ public class Tutorials
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        new CS30STutorial().main(args);
         new CS40STutorial().main(args);
     }
 
