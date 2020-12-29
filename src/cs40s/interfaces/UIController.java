@@ -5,16 +5,7 @@
  * 
  * EXPLANATION: 
  * 
- * This class matches up with the "view" class that the user sees and interacts
- * with. This class runs all the logic behind that class as an "engine" for the
- * logic. By separating this logic from the user interfaces visual (or "view") 
- * we are following a pattern like the "MVC" software design pattern which is 
- * commonly used for developing user interfaces which divides the related 
- * program logic. This is done to separate internal representations of 
- * information from the ways information is presented to and accepted from 
- * the user. This is one style of programming paradigm that is expanded on in 
- * post secondary studies in Computer Science (but is not necessary for I.B. or
- * high school Computer Science in general).
+ * ADD COMMENT HERE!
  * 
  * NOTE... After completing this comment in your project, examining the code,  
  * and reading all the comments below, move next to the "Node.java" class... 

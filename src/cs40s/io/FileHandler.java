@@ -5,10 +5,7 @@
  * 
  * EXPLANATION: 
  * 
- * This class is an example of a class that would have been developed together
- * in class if we had time to do the permanent storage unit. It uses a variety 
- * of methods to work with saving and opening data files for your programs.
- * It uses a generic so that it can save "anything" to a permanent file. 
+ * ADD COMMENT HERE!
  * 
  * NOTE... After completing this comment in your project, examining the code,  
  * and reading all the comments below, move next to the "UIController.java" 

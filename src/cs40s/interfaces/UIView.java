@@ -7,17 +7,7 @@
  * 
  * EXPLANATION: 
  * 
- * Using a designer like here in NetBeans, or a similar designer like Visual
- * Studio, the user interface design code is often separated from the code
- * logic. This also matches several Computer Science design paradigms like
- * the MVC model (which stands for Model View Controller). The idea is that
- * this module is used to build what the user "sees" and interacts with and
- * the actual logic (or the "engine") is done in a different module (or 
- * multiple modules). The ease of the designer is used to create all the UI
- * (user interface) components and change their properties (like positions, 
- * look and feel, etc) and also add action user events (like clicking a 
- * button, etc). But then the actual logic of those actions is sent to methods
- * in the controller class. 
+ * ADD COMMENT HERE!
  * 
  * NOTE... After completing this comment in your project, examining the code,  
  * and reading all the comments below, move next to the "Meme.java" class... 

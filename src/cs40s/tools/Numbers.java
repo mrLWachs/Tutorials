@@ -5,12 +5,7 @@
  * 
  * EXPLANATION: 
  * 
- * This class is another class to use as an example of a "helper" class that
- * is a modification of a class in our Help page that was started in the 
- * CS30S course. The class is a series of methods to work with numbers. Most
- * of these methods are not used in the tutorial directly (they are used by 
- * the "Dialogs.java" class) but could be used in the future (or modified 
- * for use). 
+ * ADD COMMENT HERE!
  * 
  * NOTE... After completing this comment in your project, examining the code,  
  * and reading all the comments below, move next to the "FileHandler.java" 

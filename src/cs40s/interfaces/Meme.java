@@ -5,16 +5,7 @@
  * 
  * EXPLANATION: 
  * 
- * This class is a custom class to represent a Meme object. It has properties
- * to store which one of two types of meme it is (from a saved image file or 
- * directly from a URL on the internet). It also stores the path to the image
- * and a list (a dynamic linked list collection) of all the keywords the 
- * user gave for this meme. The class signature line uses "implements 
- * Serializable" which follows the rules of an interface that it imported so 
- * that the meme can eventually be saved to a permanent file. The class also
- * uses two static constants which are used outside the class. For methods, 
- * it has a constructor, an add() method which adds the keywords, and it 
- * overloads the toString() method of the Object class.
+ * ADD COMMENT HERE!
  * 
  * NOTE... After completing this comment in your project, examining the code,  
  * and reading all the comments below, move next to the "Dialogs.java" class... 

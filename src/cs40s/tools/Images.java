@@ -5,13 +5,7 @@
  * 
  * EXPLANATION: 
  * 
- * This class like many of the classes in this tutorial is a version of a 
- * similar class found on our class "Help" page, and is included to give you 
- * ideas and an exemplar for any of your own projects you might develop. The 
- * class currently only have one method to resize an image file to fit inside a 
- * JLabel on a design (similar to how a picture box in Visual Studio can do 
- * this). It has the potential to add more methods for working with images in 
- * the future.
+ * ADD COMMENT HERE!
  * 
  * NOTE... After completing this comment in your project, examining the code,  
  * and reading all the comments below, move next to the "Numbers.java" class... 

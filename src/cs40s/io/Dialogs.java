@@ -5,12 +5,7 @@
  * 
  * EXPLANATION: 
  * 
- * This class is a version of the same class found on our class "Help" page:
- * https://mrwachs.wordpress.com/current-classes/computer-science-40s/help-cs40s
- * Which is used to have available methods for creating dialogs for the user
- * as versions of JOptionPane dialogs. It includes a lot of customization
- * features like fonts, colors, etc. The methods can be used for inputs, 
- * outputs, and things like getting file names from the user.
+ * ADD COMMENT HERE!
  * 
  * NOTE... After completing this comment in your project, examining the code,  
  * and reading all the comments below, move next to the "Images.java" class... 

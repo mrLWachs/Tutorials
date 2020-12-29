@@ -23,11 +23,7 @@ import java.lang.reflect.Array;
 /**
  * NOTE... Add the first part of the class comment below...
  * 
- * LinkedList.java - an implementation of a linked list abstract (advanced)
- * data (dynamic) type (ADT) and useful methods. The collection structure 
- * "links" together node objects into the collection to represent a list of
- * data. Similar to an array, but dynamic meaning we can add and delete nodes
- * by altering the links in the "chain".
+ * ADD COMMENT HERE!
  * 
  * It could be "visualized" as:
  * <pre>
@@ -53,17 +49,6 @@ public class LinkedList <T> implements Serializable
      * NOTE... Add the class properties and the comments below:
      *************************************************************************/
     
-    /** Flag to indicate a search was not found */
-    public final int NOT_FOUND = -1;
-    
-    /** Reference (link) to the first (front) node in the list (entry point) */
-    private Node head;
-    
-    /** Reference (link) to the last (back) node in the list (entry point) */
-    private Node tail;
-    
-    /** The number of nodes in the list, immutable property */
-    private int length;
         
     
     /**
@@ -120,22 +105,7 @@ public class LinkedList <T> implements Serializable
         /**********************************************************************
          * NOTE... Add the code and comments inside this method...
          *********************************************************************/
-                
-        if (data == null) return false;     // Null data cannot be added        
-        Node<T> node = new Node<>(data);    // New node memory created 
-        // Scenarios to consider:    
-        // 1) empty list
-        // 2) list of 1 or more nodes
-        if (isEmpty()) {                    // Adding first node
-            head = tail = node;             // Set references
-        }
-        else {                              // Subsequent nodes added
-            node.next = head;               // Link node to rest of list
-            head.previous = node;           // Connect rest of list to node
-            head = node;                    // Reassign head reference
-        }
-        length++;                           // Increase length environmental
-        return true;                        // Operation successful
+        
     }
     
     /**
@@ -150,18 +120,6 @@ public class LinkedList <T> implements Serializable
          * NOTE... Add the code and comments inside this method...
          *********************************************************************/        
         
-        if (data == null) return false;     // Null data cannot be added            
-        Node<T> node = new Node<>(data);    // New node memory created  
-        if (isEmpty()) {                    // Adding first node
-            head = tail = node;             // Set references
-        }
-        else {                              // Subsequent nodes added
-            node.previous = tail;           // Link node to rest of list
-            tail.next = node;               // Connect rest of list to node
-            tail = node;                    // Reassign tail reference
-        }
-        length++;                           // Increase length environmental
-        return true;                        // Operation successful
     } 
     
     /**
@@ -175,9 +133,7 @@ public class LinkedList <T> implements Serializable
         /**********************************************************************
          * NOTE... Add the code and comments inside this method...
          *********************************************************************/
-        
-        if (!inRange(index)) return null;   // Invalid index, return flag        
-        return (T)getNode(index).data;      // Get reference and retrieve data  
+          
     }
     
     /**
@@ -193,11 +149,6 @@ public class LinkedList <T> implements Serializable
          * NOTE... Add the code and comments inside this method...
          *********************************************************************/
         
-        if (!inRange(index)) return false;          // invalid index
-        if (data == null)    return false;          // invalid data
-        Node current = getNode(index);              // get to node at index
-        current.data = data;                        // change node data
-        return true;                                // operation successful
     }
     
     /**
@@ -229,17 +180,6 @@ public class LinkedList <T> implements Serializable
          * NOTE... Add the code and comments inside this method...
          *********************************************************************/
         
-        if (isEmpty()) return null;             // No front to remove
-        T data = (T)head.data;                  // Store head data
-        if (length == 1) finalize();            // One node list, wipe list
-        else {                
-            head = head.next;                   // Advanced head reference
-            head.previous.next = null;          // Cut old head reference
-            head.previous = null;               // Cut reference to old head
-            length--;                           // Reduce list length
-            System.gc();                        // Call system garbage collector
-        }
-        return data;                            // Return stored data
     }
     
     /**
@@ -253,17 +193,6 @@ public class LinkedList <T> implements Serializable
          * NOTE... Add the code and comments inside this method...
          *********************************************************************/
         
-        if (isEmpty()) return null;             // No back to remove
-        T data = (T)tail.data;                  // Store tail data
-        if (length == 1) finalize();            // One node list, wipe list
-        else {   
-            tail = tail.previous;               // Advanced tail reference
-            tail.next.previous = null;          // Cut old tail reference
-            tail.next = null;                   // Cut reference to old tail
-            length--;                           // Reduce list length
-            System.gc();                        // Call system garbage collector
-        }
-        return data;                            // Return stored data
     }
     
     /**
@@ -297,17 +226,6 @@ public class LinkedList <T> implements Serializable
          * NOTE... Add the code and comments inside this method...
          *********************************************************************/
         
-        if (data == null)    return false;              // Invalid data to add
-        if (!inRange(index)) return false;              // Index out of range        
-        if (index == length-1) return addBack(data);    // Add to end of list
-        Node<T> node = new Node<>(data);                // Create node object
-        Node current = getNode(index);                  // Get to index spot
-        node.next = current.next;                       // Set proper references
-        current.next.previous = node;
-        current.next = node;
-        node.previous = current;            
-        length++;                                       // Increase length
-        return true;                                    // Opperation successful
     }
     
     /**
@@ -323,17 +241,6 @@ public class LinkedList <T> implements Serializable
          * NOTE... Add the code and comments inside this method...
          *********************************************************************/
         
-        if (data == null)    return false;              // Invalid data to add
-        if (!inRange(index)) return false;              // Index out of range        
-        if (index == 0)      return addFront(data);     // Add to start of list
-        Node<T> node = new Node<>(data);                // Create node object
-        Node current = getNode(index);                  // Get to index spot
-        node.previous = current.previous;               // Set proper references
-        current.previous.next = node;
-        current.previous = node;
-        node.next = current;            
-        length++;                                       // Increase length
-        return true;                                    // Opperation successful
     }
     
     /**
@@ -369,15 +276,6 @@ public class LinkedList <T> implements Serializable
          * NOTE... Add the code and comments inside this method...
          *********************************************************************/
         
-        if (!inRange(index))   return null;             // Not in range
-        if (index == 0)        return removeFront();    // Remove first
-        if (index == length-1) return removeBack();     // Remove last
-        Node current = getNode(index);                  // Get to index
-        current.next.previous = current.previous;       // Change references
-        current.previous.next = current.next;
-        current.next = current.previous = null;        
-        length--;                                       // Reduce list length
-        return (T)current.data;                         // Return index data
     }
     
     /**
@@ -709,15 +607,7 @@ public class LinkedList <T> implements Serializable
         /**********************************************************************
          * NOTE... Add the code and comments inside this method...
          *********************************************************************/
-        
-        if (isEmpty()) return "Empty LinkedList";       // No nodes to display
-        String text = "Linked List [";                  // Starting character
-        Node current = head;                            // Start at head node
-        while (current.next != null) {                  // Traverse list
-            text += current.toString() + ",";           // Append data
-            current = current.next;                     // Move to next node
-        }            
-        return text + current.toString() + "]";         // Append end character      
+             
     }
         
     /**
@@ -733,18 +623,6 @@ public class LinkedList <T> implements Serializable
          * NOTE... Add the code and comments inside this method...
          *********************************************************************/
         
-        LinkedList<T> that = (LinkedList<T>)object;     // Cast object to list
-        if (this.size() != that.size()) return false;   // Not same sizes      
-        Node current1 = this.getFirstNode();            // Get reference to
-        Node current2 = that.getFirstNode();            // Nodes in each list    
-        while (current1 != null) {                      // Traverse lists
-            if (!current1.equals(current2)) {           // Not equal data 
-                return false;                           // Not equal lists
-            }                
-            current1 = current1.next;                   // Move each reference
-            current2 = current2.next;                   // To next node
-        }
-        return true;                                    // Lists are equal
     }
         
     /**
@@ -803,14 +681,6 @@ public class LinkedList <T> implements Serializable
          * NOTE... Add the code and comments inside this method...
          *********************************************************************/
         
-        if (!inRange(index))   return null;             // Not valid index
-        if (index == 0)        return getFirstNode();   // First node returned
-        if (index == length-1) return getLastNode();    // Last node returned
-        Node current = head;                            // Start at first node
-        for (int i = 0; i < index; i++) {               // Move to index
-            current = current.next;                     // Advance reference
-        }
-        return current;                                 // Return reference
     }
         
     /**

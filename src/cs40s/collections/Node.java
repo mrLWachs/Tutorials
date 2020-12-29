@@ -21,10 +21,7 @@ import java.io.Serializable;
 /**
  * NOTE... Add the first part of the class comment below...
  * 
- * Node.java - a representation of a generic node for use with a LinkedList
- * object. The node is a piece of whatever "data" the list will be storing. It
- * has a section of memory for that data as well as a "link" (or "connection", 
- * or "reference", or "pointer") to the next node that will be in the list. 
+ * ADD COMMENT HERE!
  * 
  * It could be "visualized" as:
  * <pre>
@@ -47,13 +44,7 @@ public class Node <T> implements Serializable
     /**************************************************************************
      * NOTE... Add the class properties and the comments below:
      *************************************************************************/
-    
-     /** The generic data for the node to store */
-    public T data;    
-    /** Self reference (link) to the next node in the "chain" */
-    public Node next;
-    /** Self reference (pointer) to the previous node in the "list" */
-    public Node previous;
+        
     
     
     /**************************************************************************
@@ -62,18 +53,7 @@ public class Node <T> implements Serializable
      * constructor is added.
      *************************************************************************/
     
-    /**
-     * Class constructor sets class properties 
-     * 
-     * @param data the node data
-     * @param next reference to the next Node object
-     * @param previous reference to the previous Node object
-     */
-    public Node(T data, Node next, Node previous) {
-        this.data     = data;
-        this.next     = next;
-        this.previous = previous;
-    }
+    
        
     /**
      * Class constructor sets class properties 
@@ -113,8 +93,6 @@ public class Node <T> implements Serializable
          * NOTE... Add the code inside this overloaded method...
          *********************************************************************/
         
-        if (data == null) return null;              // Invalid data, output null
-        return data.toString();                     // Output data in node
     }
     
     /**
@@ -130,11 +108,6 @@ public class Node <T> implements Serializable
          * NOTE... Add the code inside this overloaded method...
          *********************************************************************/
         
-        if (this.data == null) return false;    // Error check the node data
-        if (object    == null) return false;    // Error check the parameter
-        Node that = (Node)object;               // Cast object into node
-        if (that.data == null || this.data == null) return false;   // Invalid
-        return this.data.equals(that.data);     // Compare data in nodes
     }
         
     /**
@@ -157,9 +130,6 @@ public class Node <T> implements Serializable
          * NOTE... Add the code inside this overloaded method...
          *********************************************************************/
         
-        data = null;                // Set node internal data to null
-        next = previous = null;     // Set both "link" references to null
-        System.gc();                // Runs the garbage collector in Java
     }
 
 }
